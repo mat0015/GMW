@@ -67,7 +67,7 @@ function generateMsgFile() {
 
     try {
         // URL del backend (cambiar si está en producción)
-        const backendUrl = https://generador-msg.onrender.com/generate-msg 
+        const backendUrl = 'https://generador-msg.onrender.com/generate-msg'
             ? 'http://localhost:5000/generate-msg'
             : 'https://generador-msg-backend.onrender.com/generate-msg';  // Cambiar por tu URL real en Render
 

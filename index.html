@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="light">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Generador de Mensajes Customer Service</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="app">
+    <div class="topbar">
+        <div class="brand">
+            <div class="brand-mark">M</div>
+            <div class="brand-copy">
+                <h1>Generador de Mensajes</h1>
+                <p>Herramienta de Customer Service para armado de asuntos y respuestas rápidas de correo electrónico</p>
+            </div>
+        </div>
+        <div class="theme-switch">
+            <span id="themeLabel">Tema claro</span>
+            <label class="switch"><input type="checkbox" id="themeToggle"><span class="slider"></span></label>
+        </div>
+    </div>
+
+    <section class="card">
+        <div class="card-header"><h2>Datos del Asegurado</h2><div class="sub">Completá los datos para generar el asunto y el cuerpo del mail.</div></div>
+        <div class="card-body">
+            <details class="accordion" open>
+                <summary><div class="summary-left"><span>Datos principales</span></div><span class="accordion-chevron">⌄</span></summary>
+                <div class="accordion-body">
+                    <div class="fila">
+                        <div class="campo nombre"><label class="required"><span class="label-icon">👤</span> Nombre completo</label><input type="text" id="nombreCompleto" maxlength="25" placeholder="APELLIDO, NOMBRE o RAZON SOCIAL"><div id="contadorNombre" class="contador">0 / 25</div></div>
+                        <div class="campo poliza"><label class="required"><span class="label-icon">🧾</span> N° Póliza</label><input type="text" id="poliza" maxlength="10" placeholder="1234567890"></div>
+                        <div class="campo sexo"><label class="required"><span class="label-icon">⚧</span> Sexo</label><select id="sexo"><option value="">...</option><option value="M">Masculino</option><option value="F">Femenino</option></select></div>
+                        <div class="campo riesgo"><label class="required"><span class="label-icon">🛡️</span> Riesgo</label><select id="riesgo"><option value="">...</option><option>Accidente personal</option><option>Aeronaves</option><option>Autos particulares</option><option>Cascos</option><option>Caución</option><option>Combinado Familiar</option><option>Incendio</option><option>Integral de comercio</option><option>Mala praxis</option><option>Responsabilidad civil</option><option>Riesgos varios</option><option>Robo</option><option>Vida</option></select></div>
+                        <div class="campo compania"><label class="required"><span class="label-icon">🏢</span> Compañía</label><select id="compania"><option value="">...</option><option>CHUBB</option><option>El Noble</option><option>Federación Patronal</option><option>Galicia Seguros</option><option>La Meridional</option><option>La Segunda</option><option>MAPFRE</option><option>Mercantil Andina</option><option>Sancor</option><option>San Cristóbal</option><option>Swiss Medical</option><option>Zurich</option></select></div>
+                        <div class="campo email"><label><span class="label-icon">📧</span> Email del cliente (Opcional)</label><input type="email" id="emailCliente" placeholder="cliente@ejemplo.com"></div>
+                        <div class="campo consulta"><label class="required"><span class="label-icon">✉️</span> Consulta</label><select id="consulta"><option value="">Seleccione...</option><optgroup label="ENVÍO DE DOCUMENTACIÓN"><option>CLAVE PDF</option><option>POLIZA</option><option>CERTIFICADO DE COBERTURA</option><option>CERTIFICADO DE MERCOSUR</option><option>TARJETA SEGURO OBLIGATORIO</option></optgroup><optgroup label="COBRANZAS"><option>FORMULARIO CCP</option><option>SALDO FINAL</option><option>RECEPCION COMPROBANTE</option><option>RECEPCION CBU/CUIL</option><option>REGULARIZAR</option><option>REGULARIZAR + CCP</option><option>IMPUTAR PAGO</option></optgroup><optgroup label="DERIVACIONES"><option>AFINIDAD</option><option>BAJAS</option><option>SINIESTROS</option></optgroup><optgroup label="DATOS"><option>ACTUALIZACION DE DATOS</option><option>CAMBIO DE DOMICILIO</option></optgroup><optgroup label="OPERACIONES INTERNAS"><option>FACTURAR Y REFLEJAR</option><option>SALDO FINAL COBRANZAS</option></optgroup></select></div>
+                    </div>
+                    <div id="regularizarContainer" style="display:none;"></div>
+                </div>
+            </details>
+        </div>
+    </section>
+
+    <section class="card">
+        <div class="card-header"><h2>Asunto del mail</h2><div class="sub">Se genera automáticamente con los datos cargados.</div></div>
+        <div class="card-body">
+            <div id="asunto">Complete los datos...</div>
+            <div class="subject-row"><button class="btn-primary" id="copiarBtn" disabled>📋 Copiar asunto</button><button class="btn-primary" id="copiarHtmlBtn" disabled>🧩 Copiar HTML real</button><button class="btn-primary" id="descargarMsgBtn" disabled>📥 Descargar .MSG</button></div>
+            <div class="actions"><span class="pill" id="completitudPill">Faltan completar datos</span></div>
+        </div>
+    </section>
+
+    <section class="card">
+        <div class="card-header"><div class="preview-head"><h2>Vista previa del mail</h2><div class="status"><span class="dot"></span> Vista activa</div></div></div>
+        <div class="card-body">
+            <div class="outlook-shell">
+                <div class="outlook-top"><strong style="color:var(--text);">Correo generado</strong><span class="pill">Outlook Preview</span></div>
+                <div class="mail-header"><div class="mail-line"><strong>Para:</strong> cliente@dominio.com</div><div class="mail-line"><strong>Asunto:</strong> <span id="previewAsuntoMini">Complete los datos...</span></div></div>
+                <div class="mail-body" id="previewHtml">Complete los datos...</div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<script src="script.js"></script>
+<script src="https://unpkg.com/jszip@3/dist/jszip.min.js"></script>
+</body>
+</html>
